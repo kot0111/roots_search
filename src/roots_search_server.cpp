@@ -6,7 +6,7 @@ ros::Publisher roots_publisher;
 
 std::string output_topic_name;
 
-bool get_roots(roots_search::GetRoots::Request &req,
+bool get_roots(roots_search::GetRoots::Request  &req,
                roots_search::GetRoots::Response &resp) {
   int discriminant = pow(req.b, 2.0) - 4*req.a*req.c;
   if (discriminant < 0) {
@@ -18,7 +18,7 @@ bool get_roots(roots_search::GetRoots::Request &req,
     resp.answer.data.push_back(((-req.b) - sqrt(discriminant)) / (2 * req.a));
   }
   roots_publisher.publish(resp.answer);
-  return 1;
+  return true;
 }
 
 int main(int argc, char **argv) {
